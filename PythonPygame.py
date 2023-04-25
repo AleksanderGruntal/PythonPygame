@@ -67,7 +67,7 @@ playerImage = pygame.transform.scale(playerImage, [player.width, player.height])
 enemies = []
 for i in range(5):
     enemies.append(pygame.Rect(random.randint(0, screenX - 100), random.randint(0,screenY - 100), 60, 73))
-enemyImage = pygame.image.load("55.png")
+enemyImage = pygame.image.load("666.png")
 enemyImage = pygame.transform.scale(enemyImage, [enemies[0].width, enemies[0].height])
 
 enemyCounter = 0
