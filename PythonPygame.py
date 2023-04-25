@@ -61,13 +61,13 @@ posX, posY = 0, 0
 speedX, speedY = 3, 4
 
 player = pygame.Rect(posX, posY, 120, 120)
-playerImage = pygame.image.load("33.png")
+playerImage = pygame.image.load("22.png")
 playerImage = pygame.transform.scale(playerImage, [player.width, player.height])
 
 enemies = []
 for i in range(5):
     enemies.append(pygame.Rect(random.randint(0, screenX - 100), random.randint(0,screenY - 100), 60, 73))
-enemyImage = pygame.image.load("33.png")
+enemyImage = pygame.image.load("55.png")
 enemyImage = pygame.transform.scale(enemyImage, [enemies[0].width, enemies[0].height])
 
 enemyCounter = 0
@@ -81,4 +81,34 @@ while not gameover:
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
         break
-    player = pygame.Rect(posX, posY, 120,)
+    player = pygame.Rect(posX, posY, 120, 140)
+    screen.blit(playerImage,player)
+
+    posX += speedX
+    posY += speedY
+
+    if posX > screenX-playerImage.get_rect().width or posX <0:
+        speedX = -speedX
+
+    if posY > screenY-playerImage.get_rect().width or posY <0:
+        speedY = -speedY
+    enemyCounter += 1
+    if enemyCounter >= totalEnemies:
+        enemyCounter = 0
+        enemies.append(pygame.Rect(random.randint(0, screenX - 100), random.randint(0, screenY - 100), 60, 73))
+
+    for enemy in enemies[:]:
+        if player.colliderect(enemy):
+            enemies.remove(enemy)
+            score += 1
+
+    for enemy in enemies:
+        screen.blit(enemyImage, enemy)
+
+    pygame.display.flip()
+    screen.fill(blue)
+
+    print(score)
+    if score == 20:
+        gameover = True
+pygame.quit()
