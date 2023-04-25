@@ -38,3 +38,47 @@ while True:
     if event.type==pygame.QUIT: #функцмя для кнопки "выход" (крест)
         break
 pygame.quit()
+
+
+#--------
+import pygame, random
+pygame.init()
+
+red = [255, 0, 0]
+green = [0, 255, 0]
+blue = [0, 0, 255]
+pink = [255, 153, 255]
+lGreen = [153, 255, 153]
+lBlue = [153, 204, 255]
+
+screenX = 640
+screenY = 480
+screen=pygame.display.set_mode([screenX,screenY])
+pygame.display.set_caption("Surface")
+screen.fill(lBlue)
+clock = pygame.time.Clock()
+posX, posY = 0, 0
+speedX, speedY = 3, 4
+
+player = pygame.Rect(posX, posY, 120, 120)
+playerImage = pygame.image.load("33.png")
+playerImage = pygame.transform.scale(playerImage, [player.width, player.height])
+
+enemies = []
+for i in range(5):
+    enemies.append(pygame.Rect(random.randint(0, screenX - 100), random.randint(0,screenY - 100), 60, 73))
+enemyImage = pygame.image.load("33.png")
+enemyImage = pygame.transform.scale(enemyImage, [enemies[0].width, enemies[0].height])
+
+enemyCounter = 0
+totalEnemies = 20
+score = 0
+
+gameover = False
+while not gameover:
+    clock.tick(60)
+
+    event = pygame.event.poll()
+    if event.type == pygame.QUIT:
+        break
+    player = pygame.Rect(posX, posY, 120,)
